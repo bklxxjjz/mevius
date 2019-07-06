@@ -10,7 +10,6 @@ import java.sql.Statement;
  * @author terrance_cw
  */
 public class MySQLTableCreation {
-	// Run this as 
 	public static void main(String[] args) {
 		try {
 			// Step 1: Connect to MySQL.

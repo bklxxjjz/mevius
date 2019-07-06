@@ -12,7 +12,7 @@ import entity.Item;
  * @author terrance_cw
  *
  */
-public class DBConnection {
+public interface DBConnection {
 	/**
 	 * Close the connection.
 	 */
