@@ -2,9 +2,12 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <meta name="description" content="Item Recommendation">
-  <meta name="author" content="Your Name">
+  <meta name="description" content="Mevius - An Item Recommendation System">
+  <meta name="author" content="terrance.cw">
   <title>Item Recommendation Final</title>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="styles/main.css">
 </head>
 <body>
   <header class="top-header">
@@ -13,6 +16,8 @@
       <a href="#">Contact</a>
       <a href="#">About</a>
     </nav>
+    <span id="welcome-msg"></span>
+    <i id="avatar" class="avatar fa fa-user fa-2x"></i>
   </header>
   
   <div class="container">
@@ -24,7 +29,6 @@
     </header>
 
     <section class="main-section">
-
       <aside id="item-nav">
         <div class="nav-icon">
           <i class="fa fa-sitemap fa-2x"></i>
@@ -69,7 +73,7 @@
     <ul>
       <li>
         <p><i class="fa fa-map-o fa-2x"></i></p>
-        <p>Berkeley, CA</p>
+        <p>Mevius, CA</p>
       </li>
       <li>
         <p><i class="fa fa-envelope-o fa-2x"></i></p>
@@ -77,9 +81,12 @@
       </li>
       <li>
         <p><i class="fa fa-phone fa-2x"></i></p>
-        <p>+1 800 000 000</p>
+        <p>+1 800 123 456</p>
       </li>
     </ul>
   </footer>
+  
+  <script src="https://rawgit.com/emn178/js-md5/master/build/md5.min.js"></script>
+  <script src="scripts/main.js"></script>
 </body>
 </html>

@@ -11,8 +11,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.json.JSONArray;
 
+import db.DBConnection;
+import db.DBConnectionFactory;
 import entity.Item;
-import external.TicketMasterAPI;
 
 /**
  * Servlet implementation class SearchItem
@@ -34,24 +35,35 @@ public class SearchItem extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) 
+			throws ServletException, IOException {		
 		double lat = Double.parseDouble(request.getParameter("lat"));
 		double lon = Double.parseDouble(request.getParameter("lon"));
 		
-		TicketMasterAPI tmAPI = new TicketMasterAPI();
-		List<Item> items = tmAPI.search(lat, lon, null);
-		
-		JSONArray array = new JSONArray();
-		for (Item item : items) {
-			array.put(item.toJSONObject());
+		// Term can be empty or null.
+		String term = request.getParameter("term");
+		DBConnection connection = DBConnectionFactory.getConnection();
+		try {
+			List<Item> items = connection.searchItems(lat, lon, term);
+
+			JSONArray array = new JSONArray();
+			for (Item item : items) {
+				array.put(item.toJSONObject());
+			}
+			RpcHelper.writeJsonArray(response, array);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			connection.close();
 		}
-		RpcHelper.writeJsonArray(response, array);	
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) 
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
